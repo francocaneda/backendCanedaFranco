@@ -10,8 +10,8 @@ function* generarID(id = 1){
 
 const generador = generarID();
 
-const producto1 = new Producto("Peine", "Artículo accesorio", 500, "imagen pendiente" , 1, 50, generador.next())
-const producto2 = new Producto("Royal Canin", "Artículo de alimento", 1200, "imagen pendiente" , 2, 40, generador.next())
+const producto1 = new Producto("Peine", "Artículo accesorio", 500, "https://firebasestorage.googleapis.com/v0/b/backend-4a800.appspot.com/o/peine.png?alt=media&token=b767443f-12a0-4150-b1d7-b3c2be33999c" , 1, 50, generador.next())
+const producto2 = new Producto("Royal Canin", "Artículo de alimento", 1200, "https://firebasestorage.googleapis.com/v0/b/backend-4a800.appspot.com/o/alimento.png?alt=media&token=e3c27ed3-fc1f-4f37-b027-bda03c510c0d" , 2, 40, generador.next())
 
 const productManager1 = new productManager("Franco", "Caneda", 25)
 
@@ -67,10 +67,15 @@ const getProductById= (id) => {
 }
 
 
+//CASOS A TESTEAR SEGUN EL DESAFIO:
 
-
+// Me devuelve por consola el Productor con los productos asignados:
 //console.log(productManager1)
+
+// Me devuelte el array con los productos agregados hasta el momento con un ID unico
 //console.log(getProducts)
-//console.log(getProductById(5))
+
+// Me devuelve el producto en caso de encontrarlo por ID o "Not Found" en caso contrario
+//console.log(getProductById(2)) 
 
 

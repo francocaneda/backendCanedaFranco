@@ -8,14 +8,16 @@ class productManager {
     }
     
     
+    
     addProduct(nuevoProducto) {
         this.products.push(nuevoProducto)
     }
     
-
+   
     
 }
 
 export default productManager
+
 
 
