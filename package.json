@@ -1,5 +1,5 @@
 {
-    "type": "module",
+    
     "dependencies": {
         "firebase": "^9.16.0"
     }
