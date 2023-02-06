@@ -1,12 +1,8 @@
-const fs = require('fs');
-const ruta = "./archivoTesteo.txt";
-const archivoTesteo = async (ruta) => {
-    if (!fs.existsSync(ruta)){
-        await fs.promises.writeFile(ruta, "[]")
-    }else if ((await fs.promises.readFile(ruta,"utf-8")).length==0){
-        await fs.promises.writeFile(ruta, "[]")
-    }
-}
+import fs from "fs";
+//const ruta = "./archivoTesteo.txt";
+
+
+
 
 class Producto {
     constructor(title, description, price, thumbnail, code, stock, id) {
@@ -20,13 +16,19 @@ class Producto {
 
     
 }
-class productManager {
-    constructor(nombre, apellido, edad) {
-        this.nombre = nombre
-        this.apellido = apellido
-        this.edad = edad
-        this.path = ruta;
 
+
+
+class productManager {
+    constructor(path) {
+        this.path = path;
+
+    }
+    chequeoArchivo = ()=>{
+        return fs.existsSync(this.path)       
+    }
+    nuevoArchivo = async () => {
+        await fs.promises.writeFile(this.path, "[]")
     }
     
     
@@ -81,7 +83,7 @@ class productManager {
             let pos = auxiliar.findIndex(product => product.id === id)
             return auxiliar[pos];
         }else{
-            return "No se encontro el producto."
+            return console.log("Producto no identificado.")
         }        
     }
 
@@ -150,37 +152,27 @@ class productManager {
         }        
     }
 
+    cargarArchivo = async () => {
+        
+        await this.addProduct(producto1);
+        await this.addProduct(producto2);
+
+    }
+
 }
-
-
 
 const producto1 = new Producto("Peine", "Artículo accesorio", 500, "https://firebasestorage.googleapis.com/v0/b/backend-4a800.appspot.com/o/peine.png?alt=media&token=b767443f-12a0-4150-b1d7-b3c2be33999c" , 1, 50)
 const producto2 = new Producto("Royal Canin", "Artículo de alimento", 1200, "https://firebasestorage.googleapis.com/v0/b/backend-4a800.appspot.com/o/alimento.png?alt=media&token=e3c27ed3-fc1f-4f37-b027-bda03c510c0d" , 2, 40)
 
-
-const productManager1 = new productManager("Franco", "Caneda", 25)
-
-
-//Casos a TESTEAR:
+export default productManager;
 
 
-const testeo = async () => {
-    await archivoTesteo(ruta); 
-    console.log(await productManager1.getProducts());
 
-    await productManager1.addProduct(producto1);
-    await productManager1.addProduct(producto2);
 
-    console.log(await productManager1.getProducts()); //Obtengo todos los productos
-    console.log(await productManager1.getProductById(2)); //Busco el producto con ID=2
 
-    await productManager1.deleteProductById(2); // Elimino el producto con el ID=2
-    console.log(await productManager1.getProducts());
-    
-    await productManager1.addProduct(producto2);  // Agrego nuevamente el producto
-    await productManager1.updateProduct({id: 3, title: "Elemento final", description:"Elemento eliminado", price:"1200", thumbnail:"imagen",code:"2",stock:"40"}) //Actualizo el producto en la ruta
-    console.log(await productManager1.getProducts()); //Obtengo todos los productos nuevamente
-}
 
-testeo();
+
+
+
+
 
