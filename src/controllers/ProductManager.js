@@ -4,22 +4,30 @@ import fs from "fs";
 
 
 
-class Producto {
-    constructor(title, description, price, thumbnail, code, stock, id) {
-        this.title = title
-        this.description = description
-        this.price = price
-        this.thumbnail = thumbnail
-        this.code = code
-        this.stock = stock
+export class Producto {
+    constructor(title, description, price, thumbnail, code, stock, status, id) {
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.thumbnail = thumbnail;
+        this.code = code;
+        this.stock = stock;
+        this.status = status;
     }
 
     
 }
 
+const producto1 = new Producto("Peine", "Artículo accesorio", 500, "https://firebasestorage.googleapis.com/v0/b/backend-4a800.appspot.com/o/peine.png?alt=media&token=b767443f-12a0-4150-b1d7-b3c2be33999c", 1, 50, true)
+const producto2 = new Producto("Royal Canin", "Artículo de alimento", 1200, "https://firebasestorage.googleapis.com/v0/b/backend-4a800.appspot.com/o/alimento.png?alt=media&token=e3c27ed3-fc1f-4f37-b027-bda03c510c0d", 2, 40, true)
+const producto3 = new Producto("Bolso", "Artículo de traslado", 850, "https://firebasestorage.googleapis.com/v0/b/backend-4a800.appspot.com/o/bolso.png?alt=media&token=d67b0ca0-d35f-4446-8be0-04de8c615706", 3, 60, true)
+const producto4 = new Producto("Chaleco", "Artículo de protección", 800, "https://firebasestorage.googleapis.com/v0/b/backend-4a800.appspot.com/o/chaleco.png?alt=media&token=17c0271f-3417-4961-94f6-b1e3d3a2d579", 4, 53, true)
+const producto5 = new Producto("Shampoo", "Artículo de higiene", 600, "https://firebasestorage.googleapis.com/v0/b/backend-4a800.appspot.com/o/shampoo.png?alt=media&token=8a425529-1ecc-46d6-af78-c56a773fd33e", 5, 58, true)
+const producto6 = new Producto("Arnes", "Artículo de traslado", 720, "https://firebasestorage.googleapis.com/v0/b/backend-4a800.appspot.com/o/arnes.png?alt=media&token=5f964b11-fa5b-4fd3-b450-74e82d07b0cf" , 6, 61, true)
 
 
-class productManager {
+
+export class ProductManager {
     constructor(path) {
         this.path = path;
 
@@ -35,7 +43,7 @@ class productManager {
     
     addProduct = async (newProduct) => {          
         
-        if ((newProduct.title != undefined) && (newProduct.description != undefined) && (newProduct.price != undefined) && (newProduct.thumbnail != undefined) && (newProduct.code != undefined) && (newProduct.stock != undefined)){
+        if ((newProduct.title != undefined) && (newProduct.description != undefined) && (newProduct.price != undefined) && (newProduct.thumbnail != undefined) && (newProduct.code != undefined) && (newProduct.stock != undefined) && (newProduct.status != undefined)){
             
             let contenido = await fs.promises.readFile(this.path, "utf-8");
             let products = JSON.parse(contenido);
@@ -156,15 +164,19 @@ class productManager {
         
         await this.addProduct(producto1);
         await this.addProduct(producto2);
+        await this.addProduct(producto3);
+        await this.addProduct(producto4);
+        await this.addProduct(producto5);
+        await this.addProduct(producto6);
+        
 
     }
 
 }
 
-const producto1 = new Producto("Peine", "Artículo accesorio", 500, "https://firebasestorage.googleapis.com/v0/b/backend-4a800.appspot.com/o/peine.png?alt=media&token=b767443f-12a0-4150-b1d7-b3c2be33999c" , 1, 50)
-const producto2 = new Producto("Royal Canin", "Artículo de alimento", 1200, "https://firebasestorage.googleapis.com/v0/b/backend-4a800.appspot.com/o/alimento.png?alt=media&token=e3c27ed3-fc1f-4f37-b027-bda03c510c0d" , 2, 40)
 
-export default productManager;
+
+
 
 
 
