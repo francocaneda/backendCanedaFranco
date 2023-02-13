@@ -1,7 +1,7 @@
 import express from "express";
 import { __dirname, __filename } from "./path.js";
-import routerProduct from "./routes/products.routes.js";
-import routerCart from "./routes/cart.routes.js"
+import routerProduct from "./routes/productos.routes.js";
+import routerCart from "./routes/carts.routes.js"
 import multer from "multer";
 
 
@@ -16,6 +16,7 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({storage:storage})
+
 
 const app = express();
 const PORT = 8080;
@@ -35,4 +36,4 @@ app.post("/upload",upload.single("product"),(req,res)=>{
 
 app.listen(PORT, () => {
     console.log(`Server on port:${PORT}`);
-});
+}); 

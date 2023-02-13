@@ -49,8 +49,8 @@ routerProduct.post('/', async(req,res)=>{
         await manager.crearArchivo();
     }
     try{
-        res.send(await manager.addProduct(req.body))
-        return "Producto agregado exitosamente"
+        res.send(await manager.addProduct({title:req.body.title,description:req.body.description,price:req.body.price,thumbnail:req.body.thumbnail,code:req.body.code,stock:req.body.stock,status:req.body.status,category:req.body.category}))
+        res.send("Producto agregado exitosamente")
     }catch{
         res.send("Ha ocurrido un error en el archivo")
     }
@@ -59,7 +59,7 @@ routerProduct.post('/', async(req,res)=>{
 
 routerProduct.put("/:pid", async (req, res) => {
     try{
-        let respuesta = await manager.updateProduct({title:req.body.title,description:req.body.description,price:req.body.price,thumbnail:req.body.thumbnail,code:req.body.code,stock:req.body.stock,status:req.body.status,id:parseInt(req.params.pid)})
+        let respuesta = await manager.updateProduct({title:req.body.title,description:req.body.description,price:req.body.price,thumbnail:req.body.thumbnail,code:req.body.code,stock:req.body.stock,status:req.body.status,category:req.body.category,id:parseInt(req.params.pid)})
         res.send(respuesta)
     }catch{
         res.send("Error en el archivo")
