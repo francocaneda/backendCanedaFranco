@@ -39,26 +39,16 @@ routerProduct.get("/:pid", async (req, res) => {
             res.send("No se encontró el producto")
         }
     }catch{
-        res.send("Probablemente el archivo no exista")
+        res.send("No existe dicho archivo.")
     }
 
 });
 
-routerProduct.post('/', async(req,res)=>{
-    try{
-        
-        let respuesta = await manager.addProduct({title:req.body.title,description:req.body.description,price:req.body.price,thumbnail:req.body.thumbnail,code:req.body.code,stock:req.body.stock,status:req.body.status,category:req.body.category})
-        res.send(respuesta)
-    }catch{
-        res.send("Ha ocurrido un error en el archivo")
-    }
-
-})
-
 routerProduct.put("/:pid", async (req, res) => {
     try{
-        let respuesta = await manager.updateProduct({title:req.body.title,description:req.body.description,price:req.body.price,thumbnail:req.body.thumbnail,code:req.body.code,stock:req.body.stock,status:req.body.status,category:req.body.category,id:parseInt(req.params.pid)})
-        res.send(respuesta)
+        let response = await manager.updateProduct({title:req.body.title,description:req.body.description,price:req.body.price,thumbnail:req.body.thumbnail,code:req.body.code,stock:req.body.stock,status:req.body.status,category:req.body.category,id:parseInt(req.params.pid)})
+        res.send(response)
+        
     }catch{
         res.send("Error en el archivo")
     }
@@ -68,12 +58,27 @@ routerProduct.put("/:pid", async (req, res) => {
 
 routerProduct.delete("/:pid", async(req,res)=>{
     try{
-        let respuesta = await manager.deleteProductById(parseInt(req.params.pid))
-        res.send(respuesta)
+        let response= await manager.deleteProductById(parseInt(req.params.pid))
+        res.send(response)
+        res.send(`Producto eliminado`)
     }catch{
         res.send("Error en el archivo")
     }
 });
 
+
+routerProduct.post('/', async(req,res)=>{
+
+    //let { title, description, price, thumbnail, code, stock, status, category} = req.body   Otra forma de hacerlo por destructuring
+    try{
+        //console.log(req.body)
+        let respuesta = await manager.addProduct(req.body)
+        res.send(respuesta)
+        res.send("Producto agregado correctamente")
+    }catch{
+        res.send("Ha ocurrido un error en el archivo")
+    }
+
+})
 
 export default routerProduct

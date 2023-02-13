@@ -16,8 +16,8 @@ routerCart.get("/", async (req, res) => {
 
 routerCart.get("/:cid", async (req, res) => {
     try{
-        const respuesta=await manager.getAllCartProducts(parseInt(req.params.cid))
-        res.send(respuesta)
+        const response = await manager.getAllCartProducts(parseInt(req.params.cid))
+        res.send(response)
     }catch{
         res.send("Error en el archivo")
     }
@@ -26,7 +26,7 @@ routerCart.get("/:cid", async (req, res) => {
 
 routerCart.post("/", async (req, res) => {
     if (!manager.chequeoArchivo()){
-        await manager.crearArchivo();
+        await manager.nuevoArchivo();
     }
     try {        
         res.send(await manager.crearCarritoVacio())
@@ -65,4 +65,4 @@ routerCart.delete("/:cid/product/:pid", async (req, res) => {
 
 
 
-export default routerCart
+export default routerCart;

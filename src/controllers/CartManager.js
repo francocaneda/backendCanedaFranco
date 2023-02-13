@@ -14,10 +14,10 @@ export class CartManager {
         this.path = path;
         this.carritos = [];
     }
-    checkArchivo = () => {
-        return fs.existsSync(this.path)
+    chequeoArchivo = () => {
+        return fs.promise.existsSync(this.path)
     }
-    crearArchivo = async () => {
+    nuevoArchivo = async () => {
         await fs.promises.writeFile(this.path, "[]")
     }
     crearCarritoVacio = async () => {
@@ -37,18 +37,7 @@ export class CartManager {
             return `Carrrito vacio creado con id= ${idAleatorio}`
         }
     }
-    existsProductById= async(id)=> { //Solamente para comprobar si existe
-        let contenido = await fs.promises.readFile("src/models/products.json", 'utf-8')  
-        let aux = JSON.parse(contenido)
-        let valor=false;
-        if(aux.some(product=> product.id === id)) 
-        {
-            valor=true;        
-        }else{
-            valor=false;
-        }        
-        return valor;
-    }
+
 
     addProductToCart = async (idCart,idProduct, quantity) => {
         let contenido = await fs.promises.readFile(this.path, "utf-8");
@@ -101,7 +90,7 @@ export class CartManager {
 
     }
     getAllCarts= async()=> { 
-        if (this.checkArchivo()){                        
+        if (this.chequeoArchivo()){                        
             let contenido = await fs.promises.readFile(this.path, 'utf-8')  
             return JSON.parse(contenido);
         }else{
@@ -109,7 +98,7 @@ export class CartManager {
         }
     }
     getAllCartProducts= async(idCart)=> {
-        if (this.checkArchivo()){
+        if (this.chequeoArchivo()){
             
             
             let contenido = await fs.promises.readFile(this.path, 'utf-8')  
@@ -155,5 +144,18 @@ export class CartManager {
         }
 
       
+    }
+
+    existsProductById= async(id)=> { 
+        let contenido = await fs.promises.readFile("src/models/products.json", 'utf-8')  
+        let aux = JSON.parse(contenido)
+        let valor=false;
+        if(aux.some(product=> product.id === id)) 
+        {
+            valor=true;        
+        }else{
+            valor=false;
+        }        
+        return valor;
     }
 }

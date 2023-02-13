@@ -34,7 +34,7 @@ export class ProductManager {
 
     }
     chequeoArchivo = ()=>{
-        return fs.existsSync(this.path)
+        return fs.promise.existsSync(this.path)
     }
     nuevoArchivo = async () => {
         await fs.promises.writeFile(this.path, "[]")
@@ -129,7 +129,7 @@ export class ProductManager {
             if (price!=undefined){
                 if (price.length>0)
                 {
-                    auxiliar[pos].price = parseFloat(price);
+                    auxiliar[pos].price = parseInt(price);
                 }
             }
             if (thumbnail!=undefined){
@@ -143,7 +143,7 @@ export class ProductManager {
             }else if(code!=undefined){
                 if (code.length>0)
                 {
-                    auxiliar[pos].code = parseInt(code);
+                    auxiliar[pos].code = code;
                 }
             }
             if (stock!=undefined){
