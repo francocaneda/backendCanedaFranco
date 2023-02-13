@@ -45,12 +45,10 @@ routerProduct.get("/:pid", async (req, res) => {
 });
 
 routerProduct.post('/', async(req,res)=>{
-    if (!manager.chequeoArchivo()){
-        await manager.crearArchivo();
-    }
     try{
-        res.send(await manager.addProduct({title:req.body.title,description:req.body.description,price:req.body.price,thumbnail:req.body.thumbnail,code:req.body.code,stock:req.body.stock,status:req.body.status,category:req.body.category}))
-        res.send("Producto agregado exitosamente")
+        
+        let respuesta = await manager.addProduct({title:req.body.title,description:req.body.description,price:req.body.price,thumbnail:req.body.thumbnail,code:req.body.code,stock:req.body.stock,status:req.body.status,category:req.body.category})
+        res.send(respuesta)
     }catch{
         res.send("Ha ocurrido un error en el archivo")
     }

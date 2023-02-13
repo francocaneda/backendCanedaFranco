@@ -108,7 +108,7 @@ export class ProductManager {
     }
 
 
-    updateProduct = async({id, title, description, price, thumbnail, code, stock})  => {
+    updateProduct = async({title, description, price, thumbnail, code, stock, status, category, id})  => {
         let contenido = await fs.promises.readFile(this.path, 'utf-8')  
         let auxiliar = JSON.parse(contenido)
         const tituloAuxiliar = auxiliar.find(product => product.id === id);
@@ -138,16 +138,38 @@ export class ProductManager {
                     auxiliar[pos].thumbnail = thumbnail;
                 }
             }
-            if (code!=undefined){
+            if (auxiliar.some(prod => prod.code==code)){
+                return "Code repetido"
+            }else if(code!=undefined){
                 if (code.length>0)
                 {
-                    auxiliar[pos].code = code;
+                    auxiliar[pos].code = parseInt(code);
                 }
             }
             if (stock!=undefined){
                 if (stock.length>0)
                 {
                     auxiliar[pos].stock = parseInt(stock);
+                }
+            }
+            if (status!=undefined){
+                if (status==false)
+                {
+                    auxiliar[pos].status = false;
+                }else{
+                    auxiliar[pos].status = true;
+                }
+            }
+            if (category!=undefined){
+                if (category.length>0)
+                {
+                    auxiliar[pos].category = category;
+                }
+            }
+            if (id!=undefined){
+                if (id.length>0)
+                {
+                    auxiliar[pos].id = parseInt(id);
                 }
             }
             await fs.promises.writeFile(this.path, JSON.stringify(auxiliar))
