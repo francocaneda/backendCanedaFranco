@@ -60,9 +60,9 @@ routerProduct.delete("/:pid", async(req,res)=>{
     try{
         let response= await manager.deleteProductById(parseInt(req.params.pid))
         res.send(response)
-        res.send(`Producto eliminado`)
+        
     }catch{
-        res.send("Error en el archivo")
+        res.send("No se encontró el producto")
     }
 });
 
@@ -74,9 +74,10 @@ routerProduct.post('/', async(req,res)=>{
         //console.log(req.body)
         let respuesta = await manager.addProduct(req.body)
         res.send(respuesta)
-        res.send("Producto agregado correctamente")
+        console.log("Producto agregado exitosamente")
+        
     }catch{
-        res.send("Ha ocurrido un error en el archivo")
+        res.send("Se deben completar los 8 campos")
     }
 
 })

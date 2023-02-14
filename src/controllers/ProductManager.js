@@ -33,10 +33,10 @@ export class ProductManager {
         this.path = path;
 
     }
-    chequeoArchivo = ()=>{
+    checkArchivo = ()=>{
         return fs.promise.existsSync(this.path)
     }
-    nuevoArchivo = async () => {
+    newArchivo = async () => {
         await fs.promises.writeFile(this.path, "[]")
     }
     
@@ -72,18 +72,22 @@ export class ProductManager {
                     const idAleatorio = auxiliar[auxiliar.length-1].id+1; 
                     auxiliar.push({ ...newProduct, id: idAleatorio });
                     await fs.promises.writeFile(this.path, JSON.stringify(auxiliar));
+                    
                 }
                 else{
                     const idAleatorio = 1;
                     auxiliar.push({ ...newProduct, id: idAleatorio });
                     await fs.promises.writeFile(this.path, JSON.stringify(auxiliar));
+                    
                 }
             }        
         }else{
             console.log("No pueden faltar campos")
         }
     }else {
-        return "No pueden faltar campos totales"
+        console.log("Se deben completar los 8 campos");
+        res.send(undefined);
+        
     }
        
     }
@@ -189,12 +193,14 @@ export class ProductManager {
             const tituloAuxiliar = auxiliar.find(product => product.id === id);
             await fs.promises.writeFile(this.path, JSON.stringify(arrayNuevo))
             console.log(`El producto "${tituloAuxiliar.title}" fue eliminado.`);
+            
         }else{
-            console.error("No se encontró el producto.")
-        }        
+            console.error("No se encontró el producto.");
+            res.send(undefined);
+        }
     }
 
-    cargarArchivo = async () => {
+    fileArchivo = async () => {
         
         await this.addProduct(producto1);
         await this.addProduct(producto2);

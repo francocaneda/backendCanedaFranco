@@ -14,13 +14,13 @@ export class CartManager {
         this.path = path;
         this.carritos = [];
     }
-    chequeoArchivo = () => {
-        return fs.promise.existsSync(this.path)
+    checkArchivo = () => {
+        return fs.existsSync(this.path)
     }
-    nuevoArchivo = async () => {
+    newArchivo = async () => {
         await fs.promises.writeFile(this.path, "[]")
     }
-    crearCarritoVacio = async () => {
+    createCarritoVacio = async () => {
         let contenido = await fs.promises.readFile(this.path, "utf-8");
         let aux = JSON.parse(contenido);
         if (aux.length > 0) {

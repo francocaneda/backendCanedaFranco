@@ -25,11 +25,11 @@ routerCart.get("/:cid", async (req, res) => {
 });
 
 routerCart.post("/", async (req, res) => {
-    if (!manager.chequeoArchivo()){
-        await manager.nuevoArchivo();
+    if (!manager.checkArchivo()){
+        await manager.newArchivo();
     }
     try {        
-        res.send(await manager.crearCarritoVacio())
+        res.send(await manager.createCarritoVacio())
     }catch{
         res.send("Error en el archivo")
     }
