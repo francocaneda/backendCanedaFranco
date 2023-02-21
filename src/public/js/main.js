@@ -26,7 +26,7 @@ socket.on("getProducts", products =>{
     products.forEach(product => {
         document.getElementById("productsCard").innerHTML+=  
         `
-        <div class="card col-sm-2 cardProduct">
+        <div class="card cardProduct">
         <img class="card-img-top imagenCardProducts" src="${product.thumbnail}" alt="ImagenAleatoria">
         <div class="card-body">
             <h5 class="card-title">${product.title}</h5>

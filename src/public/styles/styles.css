@@ -58,6 +58,7 @@ footer {
 
 .productsCardsContainer {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     margin-left: 30px;
 }
@@ -67,10 +68,12 @@ footer {
     color: black;
     font-weight: bold;
     background-color: rgb(204, 230, 158);
-    justify-content: center;
     margin-left: 20px;
     margin-right: 20px;
+    max-width: 150px;
 }
+
+
 
 
 
