@@ -89,7 +89,7 @@ export class CartManager {
       
 
     }
-    getAllCarts= async()=> { 
+    getCarts= async()=> { 
         if (this.chequeoArchivo()){                        
             let contenido = await fs.promises.readFile(this.path, 'utf-8')  
             return JSON.parse(contenido);
@@ -97,16 +97,16 @@ export class CartManager {
             return "No hay productos a mostrar"
         }
     }
-    getAllCartProducts= async(idCart)=> {
+    getCartsProducts= async(idCart)=> {
         if (this.chequeoArchivo()){
             
             
-            let contenido = await fs.promises.readFile(this.path, 'utf-8')  
-            let arrayCarritos = JSON.parse(contenido);
+            let container = await fs.promises.readFile(this.path, 'utf-8')  
+            let arrayCarritos = JSON.parse(container);
             let index = arrayCarritos.findIndex(cart => cart.id ===idCart);
 
             if (arrayCarritos[index]){
-                let aux = JSON.parse(contenido)     
+                let aux = JSON.parse(container)     
                 let carrito = aux.find(carritos => carritos.id===idCart)   
                 if (carrito.products.length>0){
                     return carrito.products

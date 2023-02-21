@@ -6,7 +6,7 @@ const manager = new CartManager('src/models/carts.json');
 
 routerCart.get("/", async (req, res) => {
     try{
-        res.send(await manager.getAllCarts())
+        res.send(await manager.getCarts())
     }catch{
         res.send("Error en el archivo")
     }
@@ -16,7 +16,7 @@ routerCart.get("/", async (req, res) => {
 
 routerCart.get("/:cid", async (req, res) => {
     try{
-        const response = await manager.getAllCartProducts(parseInt(req.params.cid))
+        const response = await manager.getCartsProducts(parseInt(req.params.cid))
         res.send(response)
     }catch{
         res.send("Error en el archivo")
@@ -41,8 +41,8 @@ routerCart.post("/", async (req, res) => {
 
 routerCart.post("/:cid/product/:pid", async (req, res) => {
     try{
-        let respuesta = await manager.addProductToCart(parseInt(req.params.cid),parseInt(req.params.pid),1) 
-        res.send(respuesta)
+        let response = await manager.addProductToCart(parseInt(req.params.cid),parseInt(req.params.pid),1) 
+        res.send(response)
     }catch{
         res.send("Error en alguno de los archivos")
     }
@@ -51,8 +51,8 @@ routerCart.post("/:cid/product/:pid", async (req, res) => {
 
 routerCart.delete("/:cid/product/:pid", async (req, res) => {
     try{
-        let respuesta = await manager.deleteProductById(parseInt(req.params.cid),parseInt(req.params.pid),1) 
-        res.send(respuesta)
+        let response = await manager.deleteProductById(parseInt(req.params.cid),parseInt(req.params.pid),1) 
+        res.send(response)
     }catch{
         res.send("Error en alguno de los archivos")
     }

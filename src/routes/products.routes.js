@@ -22,7 +22,7 @@ routerProduct.get("/", async (req, res) => {
             res.send("No hay productos en el archivo")
         }
     }catch(error){
-        res.send("Probablemente no exista el archivo")
+        res.send("No existe el archivo")
     }
 
 
@@ -39,7 +39,7 @@ routerProduct.get("/:pid", async (req, res) => {
             res.send("No se encontró el producto")
         }
     }catch{
-        res.send("No existe dicho archivo.")
+        res.send("No existe el archivo.")
     }
 
 });
@@ -72,8 +72,8 @@ routerProduct.post('/', async(req,res)=>{
     //let { title, description, price, thumbnail, code, stock, status, category} = req.body   Otra forma de hacerlo por destructuring
     try{
         //console.log(req.body)
-        let respuesta = await manager.addProduct(req.body)
-        res.send(respuesta)
+        let response = await manager.addProduct(req.body)
+        res.send(response)
         console.log("Producto agregado exitosamente")
         
     }catch{
