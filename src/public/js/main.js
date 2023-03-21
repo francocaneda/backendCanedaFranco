@@ -1,4 +1,4 @@
-const socket = io();
+/*const socket = io();
 
 
 const form = document.getElementById("realTimeProducts")
@@ -48,4 +48,4 @@ socket.on("getProducts", products =>{
             })
         })
     })
-})
+})*/

@@ -61,6 +61,19 @@ footer {
     flex-wrap: wrap;
     justify-content: center;
     margin-left: 30px;
+    width: 300px;
+}
+
+.productsCardsContainer div {
+    width: 280px;
+}
+
+.productsNuevos {
+    width: 50px;
+}
+
+.productsCard {
+    width: 500px;
 }
 
 .cardProduct{
@@ -70,10 +83,41 @@ footer {
     background-color: rgb(204, 230, 158);
     margin-left: 20px;
     margin-right: 20px;
-    max-width: 150px;
+    max-width: 500px;
 }
 
+.form-group {
+    display: flex;
+    justify-content: center;
+    column-gap: 30px;
+}
 
+.form-group input {
+    max-width: 400px;
+}
 
+.form-group textarea {
+    width: 400px;
+}
 
+.botonFormularioMensaje {
+    display: flex;
+    justify-content: center;
+   
+}
 
+.botonFormularioMensaje button {
+    width: 200px;
+    margin: 30px;
+}
+
+.botoncito2 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.botoncito2 button {
+    width: 200px;
+  
+}

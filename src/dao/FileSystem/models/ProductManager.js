@@ -1,5 +1,5 @@
 import fs from "fs";
-//const ruta = "./archivoTesteo.txt";
+//import { getproductManagers } from "../../daoManager.js";
 
 
 
@@ -214,7 +214,12 @@ export class ProductManager {
 
 }
 
+const manager = new ProductManager('../models/products.json');
+const tests = async()=>{
+    await manager.updateProduct({id:1,title:"2",description:"3",price:"4",thumbnail:["5"],code:"6",stock:"7",status:false,category:"9"})
+ };
 
+tests();
 
 
 

@@ -1,5 +1,5 @@
-import { Router } from "express";
-import {ProductManager} from "../controllers/ProductManager.js"
+/*import { Router } from "express";
+import {ProductManager} from "../dao/FileSystem/models/ProductManager.js"
 const routerSocket = Router();
 const productManager = new ProductManager('src/models/products.json');
 
@@ -28,3 +28,4 @@ routerSocket.get('/', async(req,res) => {
 
 
 export default routerSocket;
+*/
